@@ -1,59 +1,38 @@
-# 📊 Power BI — Transformando Dados em Estratégia 🚀✨
+# 📊 Power BI — Dashboards Financeiros
 
-Hoje quero compartilhar uma vivência importante sobre **Análise de Dados com Power BI**, uma ferramenta que se tornou parte do meu cotidiano, mesmo atuando com **Automação e Back-End**.
+Dashboards interativos desenvolvidos no Power BI para análise financeira e operacional de sub-adquirentes.
 
-Apesar do meu foco ser na otimização de processos e desenvolvimento, **compreender o universo dos dados** e saber construir dashboards eficientes me permite entregar soluções **completas e estratégicas**.
+## 📈 Dashboards incluídos
 
----
+- **DRE Interativo** — receitas, despesas e resultado com filtros por período e filial
+- **Análise de Transações** — volume por bandeira, canal e produto (crédito/débito/Pix)
+- **Monitoramento de Chargeback** — taxa, distribuição e tendência
+- **Painel de Antecipação** — volume antecipado, custo e spread
+- **Relatório de Estabelecimentos** — ranking por TPV e receita
 
-## 🎨 Projeto: Evolução Visual de Dashboards
+## 🛠️ Técnicas utilizadas
 
-Os dois dashboards abaixo foram desenvolvidos a partir da **mesma base de dados**, porém com **visões e interpretações diferentes**:
+- **DAX avançado** — medidas calculadas, KPIs, % de participação, YoY
+- **Power Query (M)** — transformações, joins entre fontes, limpeza de dados
+- **Modelagem em estrela** — fato + dimensões (tempo, produto, estabelecimento)
+- **RLS (Row Level Security)** — acesso segmentado por filial/parceiro
+- **Visuais customizados** — Deneb/Vega para gráficos não nativos
 
-| Antes (Dashboard Inicial) | Depois (Dashboard Melhorado) |
-|---------------------------|-----------------------------|
-| ![Dashboard Inicial](https://github.com/RaquelDaud180/Power_BI/blob/main/WhatsApp%20Image%202025-04-10%20at%2016.33.09%20(1).jpeg) | ![Dashboard Melhorado](https://github.com/RaquelDaud180/Power_BI/blob/main/WhatsApp%20Image%202025-04-10%20at%2016.33.09.jpeg) |
+## 💡 Conceitos de DAX aplicados
 
-Na **segunda versão** (que eu desenvolvi), trabalhei:
-- Melhoria do **layout** e disposição das informações;
-- Definição de uma **paleta de cores** mais estratégica;
-- Organização dos KPIs para uma leitura fluida;
-- Aplicação de técnicas de **design data-driven**;
-- (Sim, contei com o apoio da IA — o ChatGPT me ajudou a testar combinações de cores e estrutura visual 💬✨).
+```dax
+-- Take Rate
+Take Rate = DIVIDE([Receita MDR], [TPV Total], 0)
 
----
+-- Taxa de Chargeback
+CB Rate = DIVIDE([Valor Chargebacks], [TPV Total], 0)
 
-## 💡 Lições e Mindset
-
-🧠 Um dos maiores aprendizados ao trabalhar com dados e tecnologia:
-> **Saber pedir ajuda, buscar referências e aplicar o raciocínio lógico que o back-end ensina é o que transforma um bom projeto em algo estratégico.**
-
-🔍 Não basta apresentar números — é preciso **contar histórias com os dados**.
-
-🧩 A tecnologia é uma **aliada da tomada de decisões**, quando aplicada de forma inteligente e visual.
-
-Esse mindset de **pensar fora da caixa**, revisar o que já foi feito e buscar melhorias constantes é o que move quem trabalha com:
-- Desenvolvimento de Soluções
-- Automação de Processos
-- Business Intelligence (BI)
-- Análise de Dados Estratégica
+-- Crescimento MoM
+Crescimento MoM =
+VAR MesAtual = [TPV Total]
+VAR MesAnterior = CALCULATE([TPV Total], DATEADD(Calendario[Data], -1, MONTH))
+RETURN DIVIDE(MesAtual - MesAnterior, MesAnterior, 0)
+```
 
 ---
-
-## 🛠️ Tecnologias Utilizadas
-
-| Área | Tecnologias |
-|------|-------------|
-| **Visualização de Dados** | ![Power BI](https://img.shields.io/badge/Power%20BI-F2C811?style=for-the-badge&logo=powerbi&logoColor=black) |
-| **Back-End & Automação** | ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white) |
-| **IA (Assistente de Design)** | ![ChatGPT](https://img.shields.io/badge/ChatGPT-10a37f?style=for-the-badge&logo=openai&logoColor=white) |
-
----
-
-## 🚀 Reflexão Final
-
-- 🧠 Raciocínio lógico não se limita ao código, ele é uma peça-chave para **visualização estratégica de dados**.
-- 📊 Dashboard não é só estética, é **usabilidade e tomada de decisão**.
-- 🤝 Unir Back-End + Dados + Design é o que entrega soluções completas.
-
-
+Desenvolvido por **Raquel Daud** — [LinkedIn](https://www.linkedin.com/in/raquel-daud-72a3991a2/)
